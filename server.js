@@ -22,13 +22,51 @@ const db = mysql.createConnection(
 
 
 
+const queryAllCandidtates = `SELECT * FROM candidates`;
+const queryOneCandidate = `SELECT * FROM candidates WHERE id = 1`;
+const queryDeleteCandidate = `DELETE FROM candidates WHERE id = ?`;
+const queryCreateCandidate = `DELETE FROM candidates WHERE id = ?`;
 
-// test query
-db.query(`SELECT * FROM candidates`, (err, rows) => {
-  console.log(rows);
+// // GET all candidates
+// db.query(queryAllCandidtates, (err, rows) => {
+//   if(err){
+//     console.log(err);
+//   }
+//   console.log(rows);
+// });
+
+// // GET all candidates query
+// db.query(queryOneCandidate, (err, row) => {
+//   if(err){
+//     console.log(err);
+//   }
+//   console.log(row);
+// });
+
+// // DELETE a candidate
+// db.query(queryDeleteCandidate, 1, (err, result) => {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log(result);
+// });
+
+
+// Create a candidate
+const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected) 
+              VALUES (?,?,?,?)`;
+const params = [1, 'Ronald', 'Firbank', 1];
+
+db.query(sql, params, (err, result) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(result);
 });
 
-// routes
+
+
+// ROUTES
 app.get('/', (req, res) => {
   res.json({
     message: 'Hello World'
