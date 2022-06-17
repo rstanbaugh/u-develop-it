@@ -151,7 +151,7 @@ if (errors) {
   });
 });
 
-// Party Routes ++++++++++
+// Party Routes +++++++++++
 // GET all parties
 app.get('/api/parties', (req, res) => {
   const sql = `SELECT * FROM parties`;
